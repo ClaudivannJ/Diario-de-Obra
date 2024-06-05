@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../administration.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../assets/logo.png" alt="logo">
+            <h1>Barbosa & Gomes <br>Engenharia</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="list active" data-target="works">Obras</li>
+            <li class="list" data-target="register">Cadastrar</li>
+            <li class="list" data-target="relatorio">Relatório</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content-dynamic">
+        <section class="works-section active" id="works">
+            <div class="works ">
+                
+            </div>
+        </section>
+
+        <section class="register-works" id="register">
+            <form action="http://localhost:3000/api/register/obra" method="post" enctype="multipart/form-data">
+                <div class="work-info">
+                    <span>
+                        <p>informações da Obra</p>
+                    </span>
+
+                    <label for="name-works">Nome Da Obra</label>
+                    <input type="text" name="name" id="name-works" placeholder="Ex: Minha Casa, Minha Vida">
+                    <label for="status">Status da Obra</label>
+                    <select name="status" id="status">
+                        <option value="Em Andamento">Iniciada</option>
+                        <option value="Concluído">Concluída</option>
+                    </select>
+                    <label for="date-start">Data Inicio:</label>
+                    <input type="date" name="date-start" id="date-start">
+                    <label for="date-end">Data Prevista Para o Fim da Obra:</label>
+                    <input type="date" name="date-end" id="date-end">
+                    <label for="file-img">Capa</label>
+                    <input type="file" name="file-img" id="file-img" accept="image/*">
+                </div>
+                <div class="info-client">
+                    <span>
+                        <p>informações do cliente</p>
+                    </span>
+                    <label for="nameClient">nome completo do cliente</label>
+                    <input type="text" name="nameClient" id="nameClient" placeholder="Ex: josé Emilio">
+
+                    <label for="numberPhoneClient">telefone do cliente</label>
+                    <input type="phone" name="numberPhoneClient" id="completed" placeholder="Digite o número com ddd">
+                </div>
+
+                <button id="register-button">Cadastrar</button>
+
+            </form>
+        </section>
+    </main>
+
+    <script src="../scripts/administration.js"></script>
+</body>
+
+</html>
