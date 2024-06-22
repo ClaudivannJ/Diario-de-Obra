@@ -1,0 +1,3 @@
+[build]
+  command = "node app.js"  # Seu comando de inicialização do servidor Node.js
+  publish = "public"       # Diretório onde o Netlify encontrará os arquivos estáticos
