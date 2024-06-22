@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-family: 'poppins';
 }
 html {
   overflow: hidden;
@@ -113,7 +114,7 @@ main {
         }
       }
       & .info {
-        & button {
+        & #btn-gallery {
           position: absolute;
           bottom: 2px;
           right: 2px;
@@ -133,7 +134,7 @@ main {
             /* filter: contrast(20%); */
           }
         }
-        & button:hover {
+        & #btn-gallery:hover {
           background-color: var(--color-main);
 
           & img {
@@ -148,10 +149,10 @@ main {
     }
   }
 
-  & .register-works.active {
+  & .register-works {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -180,12 +181,12 @@ main {
         flex-direction: column;
         border: 1px solid var(--color-main);
         width: 90%;
-        margin-bottom: 12px;
+        margin: 12px auto;
         padding: 10px;
 
         & p{
           position: absolute;
-          top: -10px;
+          top: -12px;
           left: 50%;
           transform: translatex(-50%);
         
@@ -194,6 +195,7 @@ main {
           background-color: var(--color-light);
         }
       }
+      
 
 
 
@@ -201,13 +203,14 @@ main {
         width: 80%;
         border-radius: 8px;
         padding: 4px;
-        margin: 6px auto;
+        margin: 4px auto;
         /* outline: none; */
         border: 1px solid var(--color-text);
 
       }
       & input,select, input::placeholder{
         font-size: 12px;
+        font-weight: 400;
         color: var(--color-text);
       }
 
@@ -215,13 +218,14 @@ main {
 
         width: 80%;
         text-align: left;
-        margin: auto;
+        margin: 0 auto;
       padding: 0 4px;
       color: var(--color-text);
       font-size: 14px;
+      font-weight: bold;
       }
 
-      & button{
+      & #register-button{
         width: 160px;
         height: 30px;      
         border-radius: 8px;
@@ -233,13 +237,58 @@ main {
         border: 1px solid var(--color-main);
         font-weight: bold;
       }
-      & button:hover{
+      & #register-button:hover{
        background-color: var(--color-secundary-text);
         color: var(--color-light);
-        border-style: none;
         transition: 0.2s ease all;
       }
 
     }
+  }
+  &.register-works.active{
+        display: flex;
+      }
+}
+
+
+.works .works-card.animate {
+  animation: moveToCenter 1s forwards;
+  opacity: 0; /* Esconde o card durante a animação */
+  pointer-events: none; /* Desabilita eventos de clique no card durante a animação */
+}
+
+.register-works {
+  animation: fadeIn 0.5s forwards;
+  display: none; /* Inicia o formulário como oculto */
+  opacity: 0;
+
+}
+
+.register-works.active {
+  display: flex; /* Mostra o formulário quando estiver ativo */
+}
+
+@keyframes moveToCenter {
+  0% {
+    transform: scale(1); /* Posição inicial */
+    opacity: 1;
+    z-index: 999;
+  }
+  100% {
+    transform:  scale(0); /* Movimento para o centro e redução de escala */
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+
   }
 }

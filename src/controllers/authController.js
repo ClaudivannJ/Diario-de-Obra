@@ -16,7 +16,7 @@ exports.login = (req, res) => {
             req.session.user = user;
             res.status(200).json({redirect:'/admin'});
         } else {
-            res.status(401).json({message: 'Credenciais inválidas.'});
+            res.status(401).json({message: 'Campo email ou password incorretos.'});
         }
     });
 };

@@ -22,7 +22,7 @@
         </div>
         <nav>
             <ul>
-                <li class="list active" data-target="works">Obras</li>
+                <li class="list active" data-target="works" onclick="getWorks()">Obras</li>
             <li class="list" data-target="register">Cadastrar</li>
             <li class="list" data-target="relatorio">Relatório</li>
             </ul>
@@ -37,7 +37,9 @@
         </section>
 
         <section class="register-works" id="register">
-            <form action="http://localhost:3000/api/register/obra" method="post" enctype="multipart/form-data">
+            <form id="workForm"  method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id">
+                
                 <div class="work-info">
                     <span>
                         <p>informações da Obra</p>

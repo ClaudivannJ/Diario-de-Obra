@@ -145,15 +145,15 @@ form input:not(:placeholder-shown) + label {
 }
 
 .error-message {
-    display: none; /* Inicialmente oculta */
-    color: #ff4d4d; /* Vermelho para indicar erro */
-    background-color: #ffe6e6; /* Fundo mais claro */
-    border: 1px solid #ff4d4d; /* Borda para destacar */
-    padding: 10px; /* Espaçamento interno */
-    margin-top: 10px; /* Espaçamento superior */
-    border-radius: 5px; /* Bordas arredondadas */
-    font-family: 'Poppins', sans-serif; /* Mesma fonte usada no resto do site */
-    font-size: 14px; /* Tamanho de fonte */
+    display: none; 
+    color: #ff4d4d;
+    background-color: #ffe6e6; 
+    border: 1px solid #ff4d4d; 
+    padding: 4px; 
+    margin-top: 10px; 
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 14px; 
 }
 
 footer{
