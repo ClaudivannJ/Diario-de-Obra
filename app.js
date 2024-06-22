@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -7,8 +8,7 @@ const path = require('path');
 const app = express();
 
 app.use(cors());
-
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
@@ -23,6 +23,8 @@ app.use(authRoutes);
 app.use(adminRoutes);
 app.use(obraRoutes);
 
-app.listen(3000, '0.0.0.0',() => {
-    console.log('Server is running on port 3000');
+const PORT = process.env.PORT || 3000;  // Usar a variável de ambiente do Netlify ou porta 3000 localmente
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
+
