@@ -1,5 +1,5 @@
 /node_modules
 /packages
-/upload
+src/upload/
 .env
-/config/
+src/config/
