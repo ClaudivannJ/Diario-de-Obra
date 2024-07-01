@@ -50,7 +50,7 @@ exports.createObra = async (req, res) => {
         });
 
         if (capaPath) fs.unlinkSync(capaPath); 
-        res.json({ message: "Obra created successfully!", obra: newObra });
+        res.status(200).json({ message: "Obra created successfully!", obra: newObra });
     } catch (error) {
         console.error('Database error:', error);
         res.status(500).json({ error: "Error saving data." });

@@ -2,9 +2,17 @@ const User = require('../models/userModel');
 const path = require('path');
 const bcrypt = require('bcrypt');
 
-exports.showLoginPage = (req, res) => {
-    res.sendFile(path.join(__dirname, '../../public/pages', 'login.html'));
+exports.redirectHome = (req, res) => {
+    if (req.session.user) {
+        res.redirect('/admin');
+    } else {
+        res.sendFile(path.join(__dirname, '../../public/pages', 'login.html'));
+    }
 };
+
+exports.ShowLoginPage = (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/pages', 'login.html'));
+}
 
 exports.login = async (req, res) => {
     const { email, password } = req.body;

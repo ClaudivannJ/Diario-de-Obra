@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         relatorio: document.querySelector('.report-section')
     };
 
-
-
     navItems.forEach(item => {
         item.addEventListener('click', function () {
             const targetId = item.getAttribute('data-target');
@@ -80,6 +78,7 @@ function renderWorks(works) {
         worksContainer.appendChild(workCard);
     });
 }
+
 function renderForm(mode, work = {}) {
     const registerSection = document.querySelector('.register-works');
     registerSection.innerHTML = `
@@ -134,14 +133,10 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 
-
 function handleFormSubmit(mode, workId) {
     const formData = new FormData(document.getElementById('workForm'));
     const method = mode === 'edit' ? 'PUT' : 'POST';
     const url = mode === 'edit' ? `/api/edit/obra/${workId}` : '/api/register/obra';
-
-    console.log('dateStart:', formData.get('dateStart'));
-    console.log('dateEnd:', formData.get('dateEnd'));
 
     fetch(url, {
         method: method,
@@ -164,7 +159,7 @@ function handleFormSubmit(mode, workId) {
         .catch(error => console.error('Error:', error));
 }
 
-function  editWork(workId) {
+function editWork(workId) {
     fetch(`/api/obras/${workId}`)
         .then(response => {
             if (!response.ok) {
@@ -173,7 +168,6 @@ function  editWork(workId) {
             return response.json();
         })
         .then(work => {
-
             renderForm('edit', work);
             renderSection('register');
         })

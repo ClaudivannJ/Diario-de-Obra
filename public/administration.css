@@ -97,7 +97,8 @@ main {
     width: 100%;
     height: 320px;
     display: flex;
-    /* background-color: #f4f4f4; */
+    flex-direction: row;
+    /* background-color: #a83c3c; */
 
     & .works-card {
       position: relative;
