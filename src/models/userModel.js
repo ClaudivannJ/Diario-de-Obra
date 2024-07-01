@@ -1,11 +1,24 @@
-const db = require('../db/database');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db/sequelize');
+const bcrypt = require('bcrypt');
 
-class User {
-    static findByEmailAndPassword(email, password, callback) {
-        db.get(`SELECT * FROM users WHERE email = ? AND password = ?`, [email, password], (error, row) => {
-            callback(error, row);
-        });
-    }
-}
+const User = sequelize.define('User', {
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+}, {
+    tableName: 'users',
+    timestamps: false,
+});
+
+User.beforeCreate(async (user) => {
+    user.password = await bcrypt.hash(user.password, 10);
+});
 
 module.exports = User;

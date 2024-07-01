@@ -1,85 +1,105 @@
 const Obra = require('../models/obraModel');
+const fs = require('fs');
 
-exports.getObras = (req, res) => {
-    Obra.findAll((error, obras) => {
-        if (error) {
-            console.error('Database error:', error);
-            return res.status(500).json({ error: "Erro no servidor." });
-        }
+exports.getObras = async (req, res) => {
+    try {
+        const obras = await Obra.findAll();
+        obras.forEach(obra => {
+            if (obra.capa) {
+                obra.capa = obra.capa.toString('base64');
+            }
+        });
         res.json(obras);
-    });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: "Server error." });
+    }
 };
 
-exports.getObrasById = (req, res) => {
-    const { id } = req.params;
-
-    Obra.findById(id, (error, obra) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ error: 'Erro no servidor' });
+exports.getObrasById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const obra = await Obra.findByPk(id);
+        if (!obra) {
+            return res.status(404).json({ error: 'Obra not found.' });
+        }
+        if (obra.capa) {
+            obra.capa = obra.capa.toString('base64');
         }
         res.json(obra);
-    });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Server error.' });
+    }
 };
 
-exports.createObra = (req, res) => {
-    const { name, status, 'date-start': dateStart, 'date-end': dateEnd, nameClient, numberPhoneClient } = req.body;
-    const capaPath = req.file ? req.file.path : null;
+exports.createObra = async (req, res) => {
+    try {
+        const { name, status, 'dateStart': dateStart, 'dateEnd': dateEnd, nameClient, numberPhoneClient } = req.body;
+        const capaPath = req.file ? req.file.path : null;
+        const capa = capaPath ? fs.readFileSync(capaPath) : null;
 
-    const data = {
-        name,
-        status,
-        dateStart,
-        dateEnd,
-        capaPath,
-        nameClient,
-        numberPhoneClient
-    };
+        const newObra = await Obra.create({
+            name,
+            status,
+            dateStart,
+            dateEnd,
+            capa,
+            nameClient,
+            numberPhoneClient
+        });
 
-    Obra.create(data, (error) => {
-        if (error) {
-            console.error('Database error:', error);
-            return res.status(500).json({ error: "Erro ao registrar os dados." });
-        }
-        res.json({ message: "Obra criada com sucesso!" });
-    });
+        if (capaPath) fs.unlinkSync(capaPath); 
+        res.json({ message: "Obra created successfully!", obra: newObra });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: "Error saving data." });
+    }
 };
 
-exports.updateObra = (req, res) => {
-    const { id } = req.params;
-    console.log('Updating obra with ID:', id);
-    console.log('Request body:', req.body);
+exports.updateObra = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, status, 'dateStart': dateStart, 'dateEnd': dateEnd, nameClient, numberPhoneClient } = req.body;
+        const capaPath = req.file ? req.file.path : null;
+        const capa = capaPath ? fs.readFileSync(capaPath) : null;
 
-    const { name, status, 'date-start': dateStart, 'date-end': dateEnd, nameClient, numberPhoneClient } = req.body;
-    const capaPath = req.file ? req.file.path : null;
-
-    const data = {
-        name,
-        status,
-        dateStart,
-        dateEnd,
-        capaPath,
-        nameClient,
-        numberPhoneClient
-    };
-
-    Obra.updateById(id, data, (error) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ error: 'Erro ao atualizar o banco de dados' });
+        const obra = await Obra.findByPk(id);
+        if (!obra) {
+            return res.status(404).json({ error: 'Obra not found.' });
         }
-        res.json({ message: "Obra atualizada com sucesso!" });
-    });
+
+        await obra.update({
+            name,
+            status,
+            dateStart,
+            dateEnd,
+            capa,
+            nameClient,
+            numberPhoneClient
+        });
+
+        if (capaPath) fs.unlinkSync(capaPath); 
+        res.json({ message: "Obra updated successfully!", obra });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Error updating data.' });
+    }
 };
 
-exports.deleteObra = (req, res) => {
-    const { id } = req.params;
 
-    Obra.deleteById(id, (error) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ error: 'Erro ao deletar obra do banco de dados' });
+exports.deleteObra = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const obra = await Obra.findByPk(id);
+        if (!obra) {
+            return res.status(404).json({ error: 'Obra not found.' });
         }
-        res.json({ message: "Obra deletada com sucesso!" });
-    });
+
+        await obra.destroy();
+        res.json({ message: "Obra deleted successfully!" });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Error deleting data.' });
+    }
 };

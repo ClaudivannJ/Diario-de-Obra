@@ -1,24 +1,33 @@
 const User = require('../models/userModel');
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 exports.showLoginPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/pages', 'login.html'));
 };
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
     const { email, password } = req.body;
-    User.findByEmailAndPassword(email, password, (err, user) => {
-        if (err) {
-            console.error('Database error:', err);
-            return res.status(500).send("Erro no servidor.");
+
+    try {
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            return res.status(401).json({ message: 'Campo email ou password incorretos.' });
         }
-        if (user) {
-            req.session.user = user;
-            res.status(200).json({redirect:'/admin'});
-        } else {
-            res.status(401).json({message: 'Campo email ou password incorretos.'});
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log(isMatch, password, user.password )
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Campo email ou password incorretos.' });
         }
-    });
+
+        req.session.user = user;
+        res.status(200).json({ redirect: '/admin' });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).send("Erro no servidor.");
+    }
 };
 
 exports.logout = (req, res) => {

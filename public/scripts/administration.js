@@ -69,8 +69,8 @@ function renderWorks(works) {
                     <span><img src="" alt="">(10)</span>
                     <span><img src="" alt="">(40)</span>
                 </div>
-                <h3>${work.nome_da_obra}</h3>
-                <span class="status">${work.status_da_obra}</span>
+                <h3>${work.name}</h3>
+                <span class="status">${work.status}</span>
                 <button onclick="openGallery(${work.id})"><img width="20px" src="/assets/gallery.png" alt=""></button>
                 <button onclick="editWork(${work.id})"><img width="20px" src="/assets/edit.png" alt="Edit"></button>
                 <button onclick="deleteWork(${work.id})"><img width="20px" src="/assets/delete.png" alt="Delete"></button>
@@ -80,7 +80,6 @@ function renderWorks(works) {
         worksContainer.appendChild(workCard);
     });
 }
-
 function renderForm(mode, work = {}) {
     const registerSection = document.querySelector('.register-works');
     registerSection.innerHTML = `
@@ -89,27 +88,28 @@ function renderForm(mode, work = {}) {
             <div class="work-info">
                 <span><p>Informações da Obra</p></span>
                 <label for="name-works">Nome Da Obra</label>
-                <input type="text" name="name" id="name-works" placeholder="Ex: Minha Casa, Minha Vida" value="${work.nome_da_obra || ''}">
+                <input type="text" name="name" id="name-works" value="${work.name || ''}" placeholder="Ex: Minha Casa, Minha Vida">
                 <label for="status">Status da Obra</label>
                 <select name="status" id="status">
-                    <option value="Em Andamento" ${work.status_da_obra === 'Em Andamento' ? 'selected' : ''}>Iniciada</option>
-                    <option value="Concluído" ${work.status_da_obra === 'Concluído' ? 'selected' : ''}>Concluída</option>
+                    <option value="Em Andamento" ${work.status === 'Em Andamento' ? 'selected' : ''}>Iniciada</option>
+                    <option value="Concluído" ${work.status === 'Concluído' ? 'selected' : ''}>Concluída</option>
                 </select>
                 <label for="date-start">Data Início:</label>
-                <input type="date" name="date-start" id="date-start" value="${work.data_inicio || ''}">
+                <input type="date" name="dateStart" id="dateStart" value="${formatDate(work.dateStart) || ''}">
                 <label for="date-end">Data Prevista Para o Fim da Obra:</label>
-                <input type="date" name="date-end" id="date-end" value="${work.data_fim || ''}">
+                <input type="date" name="dateEnd" id="dateEnd" value="${formatDate(work.dateEnd) || ''}">
                 <label for="file-img">Capa</label>
                 <input type="file" name="file-img" id="file-img" accept="image/*">
             </div>
             <div class="info-client">
                 <span><p>Informações do Cliente</p></span>
                 <label for="nameClient">Nome Completo do Cliente</label>
-                <input type="text" name="nameClient" id="nameClient" placeholder="Ex: José Emilio" value="${work.nome_cliente || ''}">
+                <input type="text" name="nameClient" id="nameClient" value="${work.nameClient || ''}" placeholder="Ex: José Emilio">
                 <label for="numberPhoneClient">Telefone do Cliente</label>
-                <input type="phone" name="numberPhoneClient" id="numberPhoneClient" placeholder="Digite o número com DDD" value="${work.telefone_cliente || ''}">
+                <input type="phone" name="numberPhoneClient" id="numberPhoneClient" value="${work.numberPhoneClient || ''}" placeholder="Digite o número com DDD">
             </div>
-            <button id="register-button">${mode === 'edit' ? 'Salvar' : 'Cadastrar'}</button>
+
+            <button id="register-button" class="btn">${mode === 'edit' ? 'Salvar' : 'Cadastrar'}</button>
         </form>
     `;
 
@@ -122,10 +122,26 @@ function renderForm(mode, work = {}) {
     });
 }
 
+// Função auxiliar para formatar a data no formato dd/mm/aaaa
+function formatDate(dateString) {
+    if (!dateString) return '';
+
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+}
+
+
 function handleFormSubmit(mode, workId) {
     const formData = new FormData(document.getElementById('workForm'));
     const method = mode === 'edit' ? 'PUT' : 'POST';
     const url = mode === 'edit' ? `/api/edit/obra/${workId}` : '/api/register/obra';
+
+    console.log('dateStart:', formData.get('dateStart'));
+    console.log('dateEnd:', formData.get('dateEnd'));
 
     fetch(url, {
         method: method,

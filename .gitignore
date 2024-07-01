@@ -1,6 +1,5 @@
 /node_modules
-
 /packages
 /upload
-
-.db
+.env
+/config/
