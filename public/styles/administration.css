@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'poppins';
+}
+
+html {
+  /* overflow: hidden; */
+}
+
+:root {
+  --color-main: #f2380f;
+  --color-dark: #333;
+  --color-background: #fafafa;
+  --color-text: #666464;
+  --color-secundary-text: #ff2f00;
+  --color-text-hover: #ff0000;
+  --color-light: #fff;
+  --color-works-bg: #f4f4f4;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  height: 90px;
+  width: 100%;
+  z-index: 999;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: var(--color-secundary-text);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+
+  & .logo {
+    display: flex;
+    align-items: center;
+
+    & img {
+      width: 60px;
+      height: 60px;
+    }
+
+    & h1 {
+      color: var(--color-main);
+      font-size: 20px;
+    }
+  }
+
+  & nav {
+    display: grid;
+
+    & ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      & .list {
+        list-style: none;
+        /* font-weight: bold; */
+        cursor: pointer;
+        color: var(--color-text);
+        padding-bottom: 6px;
+      }
+
+      & .list:hover {
+        color: var(--color-main);
+      }
+
+      & .list.active {
+        font-weight: bold;
+        color: var(--color-main);
+        border-bottom: 1px solid var(--color-main);
+      }
+    }
+  }
+}
+
+main {
+  width: 100%;
+  height: calc(100% - 90px);
+  margin-top: 90px;
+
+  & section {
+    display: none;
+  }
+
+  & .works-section.active {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    /* overflow: scroll; */
+  }
+
+  & .works {
+    width: 100%;
+    height: 320px;
+    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+    gap: 5px;
+
+    /* background-color: #a83c3c; */
+
+    & .works-card {
+      position: relative;
+      width: 272px;
+      height: 310px;
+      padding: 2px;
+      margin-right: 20px;
+      margin-bottom: 50px;
+      box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+      background-color: #fafafa;
+
+      & .img {
+        & #img-works {
+          width: 268px;
+        }
+      }
+
+      & .info {
+        & #btn-gallery {
+          position: absolute;
+          bottom: 2px;
+          right: 2px;
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          border: 1px solid #c4c4c4;
+          color: var(--color-main);
+          background-color: var(--color-light);
+          box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+          cursor: pointer;
+
+          & img {
+            filter: invert(50%) sepia(90%) saturate(5000%) hue-rotate(-10deg) brightness(97%) contrast(95%);
+
+            /* filter: contrast(20%); */
+          }
+        }
+
+        & #btn-gallery:hover {
+          background-color: var(--color-main);
+
+          & img {
+            filter: invert(100%);
+          }
+        }
+      }
+    }
+
+    & .works-card:hover {
+      background-color: var(--color-works-bg);
+      cursor: pointer;
+    }
+  }
+
+  & .register-works {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & form {
+      background-color: #fff;
+      box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+      width: 600px;
+      height: 550px;
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-main);
+      transition: transform 0.3s ease-out;
+
+      & span>p {
+        color: var(--color-text);
+      }
+
+      & .work-info,
+      .info-client {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--color-main);
+        width: 90%;
+        margin: 12px auto;
+        padding: 10px;
+
+        & p {
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translatex(-50%);
+
+          color: var(--color-main);
+          padding: 0 6px;
+          background-color: var(--color-light);
+        }
+      }
+
+
+
+
+      & select,
+      input {
+        width: 80%;
+        border-radius: 8px;
+        padding: 4px;
+        margin: 4px auto;
+        /* outline: none; */
+        border: 1px solid var(--color-text);
+
+      }
+
+      & input,
+      select,
+      input::placeholder {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--color-text);
+      }
+
+      & label {
+
+        width: 80%;
+        text-align: left;
+        margin: 0 auto;
+        padding: 0 4px;
+        color: var(--color-text);
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      & #register-button {
+        width: 160px;
+        height: 30px;
+        border-radius: 8px;
+        padding: 4px;
+        cursor: pointer;
+
+        background-color: var(--color-light);
+        color: var(--color-main);
+        border: 1px solid var(--color-main);
+        font-weight: bold;
+      }
+
+      & #register-button:hover {
+        background-color: var(--color-secundary-text);
+        color: var(--color-light);
+        transition: 0.2s ease all;
+      }
+
+    }
+  }
+
+  &.register-works.active {
+    display: flex;
+  }
+}
+
+footer {
+  color: var(--color-copy);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: var(--color-background);
+
+  & span {
+    & p {
+      color: var(--color-text);
+      font-size: 12px;
+    }
+  }
+}
+
+
+.works .works-card.animate {
+  animation: moveToCenter 1s forwards;
+  opacity: 0;
+  /* Esconde o card durante a animação */
+  pointer-events: none;
+  /* Desabilita eventos de clique no card durante a animação */
+}
+
+.register-works {
+  animation: fadeIn 0.5s forwards;
+  display: none;
+  /* Inicia o formulário como oculto */
+  opacity: 0;
+
+}
+
+.register-works.active {
+  display: flex;
+  /* Mostra o formulário quando estiver ativo */
+}
+
+@keyframes moveToCenter {
+  0% {
+    transform: scale(1);
+    /* Posição inicial */
+    opacity: 1;
+    z-index: 999;
+  }
+
+  100% {
+    transform: scale(0);
+    /* Movimento para o centro e redução de escala */
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+
+  }
+}

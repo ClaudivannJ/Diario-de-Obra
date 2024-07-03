@@ -1,0 +1,39 @@
+@media only screen and (min-width: 360px) and (max-width: 560px) {
+
+    main {
+        height: 100vh;
+
+        & form {
+            width: 85%;
+            height: 50%;
+            margin-top: -50px;
+
+            & .box-input {
+                width: 90%;
+                height: 45px;
+            }
+
+            & #warning-email, #warning-password{
+                font-size: 12px;
+                width: 85%;
+            }
+            & .form-btn {
+                width: 90%;
+                justify-content: space-between;
+
+                & #btn-submit {
+                    width: 190px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+
+    footer{
+        position: fixed;
+        bottom: 0;
+
+    }
+
+
+}
