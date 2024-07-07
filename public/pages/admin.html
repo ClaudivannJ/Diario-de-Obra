@@ -5,31 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../administration.css">
+    <link rel="stylesheet" href="../styles/administration.css">
+    <link rel="stylesheet" href="../styles/medias/adminMediaQuery.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+        <link rel="shortcut icon" href="../assets/logo.ico" type="image/x-icon" sizes="32x32">
     <title>Diário de Obras</title>
 </head>
 
 <body>
     <header>
+        <div class="menu-hamburguer">
+                <div class="trace"></div>
+                <div class="trace"></div>
+                <div class="trace"></div>
+            </div>
         <div class="logo">
-            <img src="../assets/logo.png" alt="logo">
-            <h1>Barbosa & Gomes <br>Engenharia</h1>
+            <img src="../assets/logo.webp" alt="logo">
+            <h1>Barbosa & Gomes <br class="br">Engenharia</h1>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li class="list active" data-target="works" onclick="getWorks()">Obras</li>
             <li class="list" data-target="register">Cadastrar</li>
             <li class="list" data-target="relatorio">Relatório</li>
             </ul>
+
+            
         </nav>
     </header>
 
     <main class="main-content-dynamic">
+        <nav class="menu-mobile">
+            <ul>
+                <li class="list active" data-target="works" onclick="getWorks()"><img src="../assets/botao-home.png"></li>
+            <li class="list" data-target="register"><img src="../assets/botao-adicionar.png"></li>
+            <li class="list" data-target="relatorio"><img src="../assets/relatorio.png"></li>
+            </ul>
+        </nav>
         <section class="works-section active" id="works">
             <div class="works ">
                 
@@ -74,9 +90,19 @@
 
             </form>
         </section>
-    </main>
 
+       
+    </main>
+    <footer>
+        <span>
+            <p>Desenvolvido por</p>
+            <h5> ADS Soluções - AESA-24.1 </h5>
+        </span>
+
+    </footer>
+    
     <script src="../scripts/administration.js"></script>
+    <script src="../scripts/script.js"></script>
 </body>
 
 </html>

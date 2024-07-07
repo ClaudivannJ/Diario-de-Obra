@@ -8,8 +8,10 @@
   font-family: 'poppins';
 }
 
-html {
-  /* overflow: hidden; */
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
 :root {
@@ -24,9 +26,14 @@ html {
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
+}
+
+button {
+  border-style: none;
+  list-style: none;
 }
 
 header {
@@ -34,10 +41,11 @@ header {
   top: 0;
   height: 90px;
   width: 100%;
-  z-index: 999;
-  padding: 10px 20px;
-  background-color: #fff;
-  color: var(--color-secundary-text);
+  z-index: 9999;
+  padding: 10px 0;
+  /* background-color: #000; */
+  background-color: var(--color-light);
+  color: var(--color-main);
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
@@ -52,9 +60,37 @@ header {
     }
 
     & h1 {
-      color: var(--color-main);
+      /* color: var(--color-main); */
+      color: rgba(0, 0, 0);
       font-size: 20px;
     }
+  }
+
+  & .menu-hamburguer {
+    width: 70px;
+    height: 100%;
+    /* cursor: pointer; */
+    display: none;
+    border-radius: 50%;
+
+    background-color: var(--color-light);
+    flex-direction: column;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+
+
+    & .trace {
+      width: 40px;
+      height: 6px;
+      margin: 4px;
+      border-radius: 8px;
+      /* background-color: var(--color-main); */
+      background-color: rgba(0, 0, 0);
+    }
+
   }
 
   & nav {
@@ -83,15 +119,72 @@ header {
         border-bottom: 1px solid var(--color-main);
       }
     }
+
   }
 }
 
 main {
-  width: 100%;
-  height: calc(100% - 90px);
   margin-top: 90px;
+  flex: 1;
+  background-color: rgba(249, 249, 249);
+
+  & .menu-mobile {
+
+    /* display: none; */
+    /* position: fixed;
+    width: 70px;
+    z-index: 999;
+    left: 0;
+    top: 0px;
+    bottom: 0px;
+*/
+
+    background-color: #fff;
+    /*
+    box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21),
+      -0px 0px; */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    /* background-color: #1C1C1C; */
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    height: 100vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translatey(-100%);/*vou mudar aqui amanha*/
+    transition: transform 1s;/*vou mudar aqui amanha*/
+    opacity: 0;
+
+    & ul {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      /* margin-top: 90px; */
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+
+      & li {
+        list-style: none;
+        margin: 70px 0;
+
+        & img {
+          width: 50px;
+          /* height: 60px; */
+        }
+
+
+      }
+    }
+
+  }
 
   & section {
+    flex: 1;
     display: none;
   }
 
@@ -105,6 +198,7 @@ main {
   }
 
   & .works {
+    flex: 1;
     width: 100%;
     height: 320px;
     justify-content: space-evenly;
@@ -112,50 +206,80 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
     gap: 5px;
 
-    /* background-color: #a83c3c; */
+
 
     & .works-card {
       position: relative;
       width: 272px;
-      height: 310px;
+      height: auto;
       padding: 2px;
       margin-right: 20px;
       margin-bottom: 50px;
-      box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
-      background-color: #fafafa;
+      border-radius: 4px;
+      box-shadow: 0px 0px 10px 0px rgba(23, 23, 23, 0.21);
+      background-color: rgba(240, 240, 240);
+      /* border: 1px solid var(--color-main); */
 
       & .img {
         & #img-works {
           width: 268px;
+          height: auto;
+          object-fit: cover;
+          aspect-ratio: 16/8;
+          border-radius: 4px 4px 0 0;
         }
       }
 
       & .info {
-        & #btn-gallery {
-          position: absolute;
-          bottom: 2px;
-          right: 2px;
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-          border: 1px solid #c4c4c4;
-          color: var(--color-main);
-          background-color: var(--color-light);
-          box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
-          cursor: pointer;
-
-          & img {
-            filter: invert(50%) sepia(90%) saturate(5000%) hue-rotate(-10deg) brightness(97%) contrast(95%);
-
-            /* filter: contrast(20%); */
-          }
-        }
+        color: rgba(112, 112, 112);
 
         & #btn-gallery:hover {
           background-color: var(--color-main);
 
           & img {
             filter: invert(100%);
+          }
+        }
+
+        & h3 {
+          color: var(--color-main);
+        }
+
+        & .status {
+          color: rgba(149, 149, 149);
+        }
+
+        .btn-options {
+          /* position: relative; */
+          display: flex;
+          /* background-color: #333; */
+          width: 100%;
+          justify-content: space-between;
+          padding: 4px;
+          margin-top: 4px;
+          box-sizing: border-box;
+
+          & button {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            color: var(--color-main);
+            background-color: none;
+            box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+            cursor: pointer;
+
+          }
+
+          & #btn-delete {
+            margin-left: 10px;
+
+            & img {
+              filter: invert(50%) sepia(90%) saturate(5000%) hue-rotate(-10deg) brightness(97%) contrast(95%);
+            }
+          }
+
+          & #btn-gallery {
+            margin-left: auto;
           }
         }
       }
@@ -229,6 +353,20 @@ main {
 
       }
 
+      & input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #fff !important;
+        /* Fundo azul */
+        box-shadow: 0 0 0 30px #fff inset !important;
+        /* Fundo azul */
+        -webkit-text-fill-color: var(--color-text) !important;
+        /* Texto branco */
+        caret-color: var(--color-text) !important;
+        /* Texto branco */
+      }
+
       & input,
       select,
       input::placeholder {
@@ -276,19 +414,25 @@ main {
 }
 
 footer {
-  color: var(--color-copy);
   width: 100%;
-  height: 80px;
+  height: 90px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
-  background-color: var(--color-background);
+  background-color: rgba(249, 249, 249);
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
+  z-index: 9999;
 
   & span {
     & p {
       color: var(--color-text);
       font-size: 12px;
+    }
+
+    & h5 {
+      color: var(--color-main);
     }
   }
 }

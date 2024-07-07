@@ -69,9 +69,11 @@ function renderWorks(works) {
                 </div>
                 <h3>${work.name}</h3>
                 <span class="status">${work.status}</span>
-                <button onclick="openGallery(${work.id})"><img width="20px" src="/assets/gallery.png" alt=""></button>
-                <button onclick="editWork(${work.id})"><img width="20px" src="/assets/edit.png" alt="Edit"></button>
-                <button onclick="deleteWork(${work.id})"><img width="20px" src="/assets/delete.png" alt="Delete"></button>
+                <div class="btn-options">
+                    <button id="btn-edit" onclick="editWork(${work.id})"><img width="30px" src="../assets/edit.svg" alt="Edit"></button>
+                    <button id="btn-delete" onclick="deleteWork(${work.id})"><img width="30px" src="/assets/delete.svg" alt="Delete"></button>
+                    <button id="btn-gallery" onclick="openGallery(${work.id})"><img width="30px" src="../assets/gallery.png" alt=""></button>
+                </div>
             </div>
         `;
 

@@ -1,0 +1,107 @@
+@media only screen and (min-width: 360px) and (max-width:600px) {
+    header {
+        /* position: absolute; */
+        width: 100%;
+        display: flex;
+
+        & .logo {
+            width: 85%;/*vou mudar aqui amanha*/
+            justify-content: end;/*vou mudar aqui amanha*/
+            /* background-color: black; */
+            background-color: rgba(240,240,240);/*vou mudar aqui amanha*/
+            border-radius: 8px;/*vou mudar aqui amanha*/
+            margin-right: 16px;
+
+          
+            & h1 {
+                /* background-color: blueviolet; */
+                /* position: relative; */
+                width: 60%;
+                /* right: 50%; */
+                /* margin-left: -50%; */
+                margin: 0 40px 0 10px;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        & .menu-hamburguer {
+            display: flex;
+        }
+
+        & nav {
+            display: none;
+
+
+        }
+    }
+
+    main {
+        /* flex:1; */
+        flex-direction: row;
+
+        & .menu-mobile.active {
+            display: block;
+            transform: translatey(0);/*vou mudar aqui amanha*/
+            opacity: 1;
+
+            /* & ul{
+                display: flex;
+                flex-direction: column;
+                margin-top: 90px;
+                justify-content: center;
+              } */
+
+        }
+
+        & .works-section.active {
+            margin: 0;
+            padding: 20px 0 60px;
+
+            & .works {
+                width: calc(100% - 70px);/*vou mudar aqui amanha*/
+                height: 100%;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                margin-left: 70px; /*vou mudar aqui amanha*/
+
+                & .works-card {
+                    width: 90%;/*vou mudar aqui amanha*/
+                    height: auto;
+                    border-radius: 4px;
+                    margin: 20px 10px;
+                    /* box-shadow: 0px 4px 10px 0px var(--color-main); */
+                    /* background-color: #f4f4f4; */
+
+                    & .img {
+                        width: 100%;
+                        text-align: center;
+
+                        & #img-works {
+                            width: 100%;
+                            height: auto;
+
+                        }
+
+                    }
+
+                    & .info {
+                        & h3 {
+                            color: var(--color-main);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        height: 60px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+}
