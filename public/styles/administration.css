@@ -15,13 +15,17 @@ body {
 }
 
 :root {
-  --color-main: #f2380f;
+  --color-bg: rgba(4, 4, 22);
+  --color-bg-black: rgba(0, 0, 0);
+  --color-bg-card: rgba(71, 71, 94);
+  --color-text-primary: #FB4B00;
+
   --color-dark: #333;
   --color-background: #fafafa;
   --color-text: #666464;
   --color-secundary-text: #ff2f00;
   --color-text-hover: #ff0000;
-  --color-light: #fff;
+   --color-bg-white: #fff;
   --color-works-bg: #f4f4f4;
 }
 
@@ -43,9 +47,9 @@ header {
   width: 100%;
   z-index: 9999;
   padding: 10px 0;
-  /* background-color: #000; */
-  background-color: var(--color-light);
-  color: var(--color-main);
+  border-bottom: 1px solid #FB4B00;
+  background-color: var(--color-bg-black);
+  color: var(--color-bg);
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
@@ -60,8 +64,8 @@ header {
     }
 
     & h1 {
-      /* color: var(--color-main); */
-      color: rgba(0, 0, 0);
+      /* color: var(--color-bg); */
+      color: var(--color-bg-white);
       font-size: 20px;
     }
   }
@@ -72,8 +76,6 @@ header {
     /* cursor: pointer; */
     display: none;
     border-radius: 50%;
-
-    background-color: var(--color-light);
     flex-direction: column;
 
     text-align: center;
@@ -87,8 +89,8 @@ header {
       height: 6px;
       margin: 4px;
       border-radius: 8px;
-      /* background-color: var(--color-main); */
-      background-color: rgba(0, 0, 0);
+      background-color: var(--color-bg-white);
+      /* background-color: var(--color-bg); */
     }
 
   }
@@ -110,13 +112,13 @@ header {
       }
 
       & .list:hover {
-        color: var(--color-main);
+        color: var(--color-bg-white);
       }
 
       & .list.active {
         font-weight: bold;
-        color: var(--color-main);
-        border-bottom: 1px solid var(--color-main);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-secundary-text);
       }
     }
 
@@ -126,7 +128,8 @@ header {
 main {
   margin-top: 90px;
   flex: 1;
-  background-color: rgba(249, 249, 249);
+  background-color: var(--color-bg);
+  /* background-color: rgba(249, 249, 249); */
 
   & .menu-mobile {
 
@@ -139,22 +142,22 @@ main {
     bottom: 0px;
 */
 
-    background-color: #fff;
+    background-color: var(--color-bg-card);
     /*
     box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21),
       -0px 0px; */
     position: fixed;
     left: 0;
-    top: 0;
-    bottom: 0;
+    top: 100px;
+    bottom: 70px;
     z-index: 999;
     /* background-color: #1C1C1C; */
     flex-direction: column;
     align-items: center;
     width: 70px;
-    height: 100vh;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* height: 80vh; */
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 0 0px 8px 0px var(--color-bg-white);
     transform: translatey(-100%);/*vou mudar aqui amanha*/
     transition: transform 1s;/*vou mudar aqui amanha*/
     opacity: 0;
@@ -216,9 +219,10 @@ main {
       margin-right: 20px;
       margin-bottom: 50px;
       border-radius: 4px;
-      box-shadow: 0px 0px 10px 0px rgba(23, 23, 23, 0.21);
-      background-color: rgba(240, 240, 240);
-      /* border: 1px solid var(--color-main); */
+      box-shadow: 0px 2px 6px 0px var(--color-bg-white);
+      background-color: var(--color-bg-card);
+      transition: transform 0.2s;
+      /* border: 1px solid var(--color-bg); */
 
       & .img {
         & #img-works {
@@ -234,7 +238,7 @@ main {
         color: rgba(112, 112, 112);
 
         & #btn-gallery:hover {
-          background-color: var(--color-main);
+          background-color: var(--color-bg);
 
           & img {
             filter: invert(100%);
@@ -242,7 +246,7 @@ main {
         }
 
         & h3 {
-          color: var(--color-main);
+          color: var(--color-bg-white);
         }
 
         & .status {
@@ -263,7 +267,7 @@ main {
             width: 40px;
             height: 40px;
             border-radius: 100%;
-            color: var(--color-main);
+            color: var(--color-bg);
             background-color: none;
             box-shadow: 0px 0px 8px 0px rgba(23, 23, 23, 0.21);
             cursor: pointer;
@@ -286,7 +290,9 @@ main {
     }
 
     & .works-card:hover {
-      background-color: var(--color-works-bg);
+      /* background-color: var(--color-works-bg); */
+      transform: scale(1.05);
+
       cursor: pointer;
     }
   }
@@ -310,7 +316,7 @@ main {
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: var(--color-main);
+      color: var(--color-bg);
       transition: transform 0.3s ease-out;
 
       & span>p {
@@ -322,7 +328,7 @@ main {
         position: relative;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--color-main);
+        border: 1px solid var(--color-bg);
         width: 90%;
         margin: 12px auto;
         padding: 10px;
@@ -333,7 +339,7 @@ main {
           left: 50%;
           transform: translatex(-50%);
 
-          color: var(--color-main);
+          color: var(--color-bg);
           padding: 0 6px;
           background-color: var(--color-light);
         }
@@ -394,8 +400,8 @@ main {
         cursor: pointer;
 
         background-color: var(--color-light);
-        color: var(--color-main);
-        border: 1px solid var(--color-main);
+        color: var(--color-bg);
+        border: 1px solid var(--color-bg);
         font-weight: bold;
       }
 
@@ -432,7 +438,7 @@ footer {
     }
 
     & h5 {
-      color: var(--color-main);
+      color: var(--color-bg);
     }
   }
 }

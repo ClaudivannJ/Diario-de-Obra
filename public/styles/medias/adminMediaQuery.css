@@ -8,7 +8,6 @@
             width: 85%;/*vou mudar aqui amanha*/
             justify-content: end;/*vou mudar aqui amanha*/
             /* background-color: black; */
-            background-color: rgba(240,240,240);/*vou mudar aqui amanha*/
             border-radius: 8px;/*vou mudar aqui amanha*/
             margin-right: 16px;
 
@@ -87,10 +86,11 @@
                     }
 
                     & .info {
-                        & h3 {
-                            color: var(--color-main);
-                        }
+                     
                     }
+                }
+                & .works-card:hover{
+                    transform: none;
                 }
             }
         }
